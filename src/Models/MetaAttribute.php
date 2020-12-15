@@ -2,7 +2,6 @@
 
 namespace Nncodes\MetaAttributes\Models;
 
-
 use Illuminate\Database\Eloquent\Model;
 
 class MetaAttribute extends Model
