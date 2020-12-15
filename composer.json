@@ -1,16 +1,16 @@
 {
-    "name": ":vendor_name/:package_name",
-    "description": ":package_description",
+    "name": "nncodes/laravel-meta-attributes",
+    "description": "Add meta attributes to your Elioquent models",
     "keywords": [
-        ":vendor_name",
-        ":package_name"
+        "nncodes",
+        "laravel-meta-attributes"
     ],
-    "homepage": "https://github.com/:vendor_name/:package_name",
+    "homepage": "https://github.com/nncodes/laravel-meta-attributes",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": ":author_email",
+            "name": "Leonardo Poletto",
+            "email": "lgupoletto@gmail.com",
             "homepage": "https://spatie.be",
             "role": "Developer"
         }
@@ -21,17 +21,18 @@
     },
     "require-dev": {
         "orchestra/testbench": "^6.0",
-        "phpunit/phpunit": "^9.3"
+        "phpunit/phpunit": "^9.3",
+        "vimeo/psalm": "^4.3"
     },
     "autoload": {
         "psr-4": {
-            "Spatie\\Skeleton\\": "src",
-            "Spatie\\Skeleton\\Database\\Factories\\": "database/factories"
+            "Nncodes\\MetaAttributes\\": "src",
+            "Nncodes\\MetaAttributes\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Spatie\\Skeleton\\Tests\\": "tests"
+            "Nncodes\\MetaAttributes\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -45,10 +46,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Spatie\\Skeleton\\SkeletonServiceProvider"
+                "Nncodes\\MetaAttributes\\MetaAttributesServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "Spatie\\Skeleton\\SkeletonFacade"
+                "MetaAttributes": "Nncodes\\MetaAttributes\\MetaAttributesFacade"
             }
         }
     },

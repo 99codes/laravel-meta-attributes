@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\Skeleton\Tests;
+namespace Nncodes\MetaAttributes\Tests;
 
 class ExampleTest extends TestCase
 {

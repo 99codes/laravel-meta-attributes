@@ -1,12 +1,12 @@
 <?php
 
-namespace Spatie\Skeleton\Commands;
+namespace Nncodes\MetaAttributes\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class MetaAttributesCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'laravel-meta-attributes';
 
     public $description = 'My command';
 
