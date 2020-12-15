@@ -11,14 +11,14 @@ class MetaAttributesServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__ . '/../config/laravel-meta-attributes.php' => config_path('laravel-meta-attributes.php'),
+                __DIR__ . '/../config/meta-attributes.php' => config_path('meta-attributes.php'),
             ], 'config');
 
             $this->publishes([
-                __DIR__ . '/../resources/views' => base_path('resources/views/vendor/laravel-meta-attributes'),
+                __DIR__ . '/../resources/views' => base_path('resources/views/vendor/meta-attributes'),
             ], 'views');
 
-            $migrationFileName = 'create_laravel_meta_attributes_table.php';
+            $migrationFileName = 'create_meta_attributes_table.php';
             if (! $this->migrationFileExists($migrationFileName)) {
                 $this->publishes([
                     __DIR__ . "/../database/migrations/{$migrationFileName}.stub" => database_path('migrations/' . date('Y_m_d_His', time()) . '_' . $migrationFileName),
@@ -30,12 +30,12 @@ class MetaAttributesServiceProvider extends ServiceProvider
             ]);
         }
 
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'laravel-meta-attributes');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'meta-attributes');
     }
 
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/laravel-meta-attributes.php', 'laravel-meta-attributes');
+        $this->mergeConfigFrom(__DIR__ . '/../config/meta-attributes.php', 'meta-attributes');
     }
 
     public static function migrationFileExists(string $migrationFileName): bool

@@ -8,10 +8,12 @@ class CreateMetaAttributesTable extends Migration
 {
     public function up()
     {
-        Schema::create('laravel-meta-attributes_table', function (Blueprint $table) {
+        Schema::create('meta_attributes', function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            // add fields
+            $table->string('key');
+            $table->text('value');
+            $table->morphs('model');
 
             $table->timestamps();
         });
