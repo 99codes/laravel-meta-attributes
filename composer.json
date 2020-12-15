@@ -1,6 +1,6 @@
 {
     "name": "nncodes/laravel-meta-attributes",
-    "description": "Add meta attributes to your Elioquent models",
+    "description": "Add meta attributes to Eloquent models",
     "keywords": [
         "nncodes",
         "laravel-meta-attributes"
@@ -54,15 +54,5 @@
         }
     },
     "minimum-stability": "dev",
-    "prefer-stable": true,
-    "funding": [
-        {
-            "type": "github",
-            "url": "https://github.com/sponsors/spatie"
-        },
-        {
-            "type": "other",
-            "url": "https://spatie.be/open-source/support-us"
-        }
-    ]
+    "prefer-stable": true
 }

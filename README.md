@@ -1,11 +1,11 @@
-# Add meta attributes to your Elioquent models
+# Add meta attributes to Eloquent models
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/nncodes/laravel-meta-attributes.svg?style=flat-square)](https://packagist.org/packages/nncodes/laravel-meta-attributes)
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/nncodes/laravel-meta-attributes/run-tests?label=tests)](https://github.com/nncodes/laravel-meta-attributes/actions?query=workflow%3ATests+branch%3Amaster)
 [![Total Downloads](https://img.shields.io/packagist/dt/nncodes/laravel-meta-attributes.svg?style=flat-square)](https://packagist.org/packages/nncodes/laravel-meta-attributes)
 
 
-Add meta attributes to your Elioquent models
+Add meta attributes to Eloquent models
 
 ## Installation
 
