@@ -3,8 +3,8 @@
 namespace Nncodes\MetaAttributes\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Orchestra\Testbench\TestCase as Orchestra;
 use Nncodes\MetaAttributes\MetaAttributesServiceProvider;
+use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
 {
