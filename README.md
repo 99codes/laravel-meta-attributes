@@ -1,4 +1,4 @@
-# Add meta attributes to Eloquent models
+# Laravel Meta Attributes
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/nncodes/laravel-meta-attributes.svg?style=flat-square)](https://packagist.org/packages/nncodes/laravel-meta-attributes)
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/nncodes/laravel-meta-attributes/run-tests?label=tests)](https://github.com/99codes/laravel-meta-attributes/actions?query=workflow%3ATests+branch%3Amaster)

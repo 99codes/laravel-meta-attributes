@@ -5,13 +5,13 @@
         "nncodes",
         "laravel-meta-attributes"
     ],
-    "homepage": "https://github.com/nncodes/laravel-meta-attributes",
+    "homepage": "https://github.com/99codes/laravel-meta-attributes",
     "license": "MIT",
     "authors": [
         {
             "name": "Leonardo Poletto",
             "email": "lgupoletto@gmail.com",
-            "homepage": "https://spatie.be",
+            "homepage": "https://99codes.com.br",
             "role": "Developer"
         }
     ],
@@ -47,10 +47,7 @@
         "laravel": {
             "providers": [
                 "Nncodes\\MetaAttributes\\MetaAttributesServiceProvider"
-            ],
-            "aliases": {
-                "MetaAttributes": "Nncodes\\MetaAttributes\\MetaAttributesFacade"
-            }
+            ]
         }
     },
     "minimum-stability": "dev",

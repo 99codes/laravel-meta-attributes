@@ -3,7 +3,6 @@
 namespace Nncodes\MetaAttributes;
 
 use Illuminate\Support\ServiceProvider;
-use Nncodes\MetaAttributes\Commands\MetaAttributesCommand;
 
 class MetaAttributesServiceProvider extends ServiceProvider
 {
@@ -24,10 +23,6 @@ class MetaAttributesServiceProvider extends ServiceProvider
                     __DIR__ . "/../database/migrations/{$migrationFileName}.stub" => database_path('migrations/' . date('Y_m_d_His', time()) . '_' . $migrationFileName),
                 ], 'migrations');
             }
-
-            $this->commands([
-                MetaAttributesCommand::class,
-            ]);
         }
 
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'meta-attributes');

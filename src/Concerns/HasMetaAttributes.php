@@ -8,7 +8,7 @@ trait HasMetaAttributes
 {
     public function metaAttributes()
     {
-        return $this->morphOne(MetaAttribute::class, 'model');
+        return $this->morphMany(MetaAttribute::class, 'model');
     }
 
     public function setMetaAttribute(string $key, $value)
