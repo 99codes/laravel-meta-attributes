@@ -34,17 +34,16 @@ trait HasMetaAttributes
      * Get a meta attribute
      *
      * @param string $key
-     * @param mixed|null $fallback
      * @return \Nncodes\MetaAttributes\Models\MetaAttribute|null
      */
-    public function getMeta(string $key, $fallback = null): ?MetaAttribute
+    public function getMeta(string $key): ?MetaAttribute
     {
         if ($meta = $this->metas()->firstWhere('key', $key)) {
             return $meta;
         }
     }
 
-    /**
+     /**
      * Get a collection of meta attributes
      *
      * @return object
@@ -52,6 +51,16 @@ trait HasMetaAttributes
     public function getMetas(): object
     {
         return (object) $this->metas->pluck('value', 'key')->toArray();
+    }
+
+    /**
+     * Accessor to a collection of meta attributes
+     *
+     * @return object
+     */
+    public function getMetaAttribute(): object
+    {
+        return $this->getMetas();
     }
 
     /**
