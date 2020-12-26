@@ -39,16 +39,16 @@ trait HasMetaAttributes
      */
     public function getMeta(string $key, $fallback = null): ?MetaAttribute
     {
-        if( $meta = $this->metas()->firstWhere('key', $key)){
+        if ($meta = $this->metas()->firstWhere('key', $key)) {
             return $meta;
         }
     }
 
-   /**
-    * Get a collection of meta attributes
-    *
-    * @return object
-    */
+    /**
+     * Get a collection of meta attributes
+     *
+     * @return object
+     */
     public function getMetas(): object
     {
         return (object) $this->metas->pluck('value', 'key')->toArray();
@@ -63,7 +63,7 @@ trait HasMetaAttributes
      */
     public function getMetaValue(string $key, $fallback = null)
     {
-        if($meta = $this->metas()->firstWhere('key', $key)){
+        if ($meta = $this->metas()->firstWhere('key', $key)) {
             return $meta->value;
         }
 
@@ -74,7 +74,7 @@ trait HasMetaAttributes
      * Check if a meta attribute exists
      *
      * @param string $key
-     * @return boolean
+     * @return bool
      */
     public function hasMeta(string $key): bool
     {

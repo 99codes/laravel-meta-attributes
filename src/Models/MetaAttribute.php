@@ -13,9 +13,9 @@ class MetaAttribute extends Model
      * @var array
      */
     protected $fillable = [
-        'key', 
-        'value', 
-        'type'
+        'key',
+        'value',
+        'type',
     ];
 
     /**
@@ -25,7 +25,7 @@ class MetaAttribute extends Model
      */
     protected $hidden = [
         'model_id',
-        'model_type'
+        'model_type',
     ];
 
     /**
@@ -38,13 +38,13 @@ class MetaAttribute extends Model
         parent::boot();
 
         static::retrieved(function (MetaAttribute $meta) {
-            if( $meta->type == 'encrypted' ){
+            if ($meta->type == 'encrypted') {
                 $meta->value = decrypt($meta->value);
             }
         });
 
         static::saving(function ($meta) {
-            if( $meta->type == 'encrypted' ){
+            if ($meta->type == 'encrypted') {
                 $meta->value = encrypt($meta->value);
             }
         });
@@ -53,17 +53,16 @@ class MetaAttribute extends Model
     public function getValueAttribute($value)
     {
         $this->casts = [
-            'value' => $this->type
+            'value' => $this->type,
         ];
 
         return $this->castAttribute('value', $value);
     }
 
-
     public function setTypeAttribute($value)
     {
         $this->casts = [
-            'value' => $value
+            'value' => $value,
         ];
 
         $this->attributes['type'] = $value;

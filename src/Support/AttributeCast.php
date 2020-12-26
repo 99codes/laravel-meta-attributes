@@ -1,9 +1,9 @@
-<?php 
+<?php
 
 namespace Nncodes\MetaAttributes\Support;
 
-use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Nncodes\MetaAttributes\Models\MetaAttribute;
 
@@ -11,7 +11,7 @@ class AttributeCast
 {
     /**
      * Meta attribute key
-     * 
+     *
      * @var string
      */
     protected string $key;
@@ -23,25 +23,25 @@ class AttributeCast
      */
     protected $relationship;
 
-   /**
-    * Create a new instance
-    *
-    * @param \Illuminate\Database\Eloquent\Relations\MorphMany $relationship
-    * @param string $key
-    */
+    /**
+     * Create a new instance
+     *
+     * @param \Illuminate\Database\Eloquent\Relations\MorphMany $relationship
+     * @param string $key
+     */
     public function __construct(MorphMany $relationship, string $key)
     {
         $this->relationship = $relationship;
         $this->key = $key;
     }
 
-   /**
-    * Build a new instance
-    *
-    * @param \Illuminate\Database\Eloquent\Relations\MorphMany $relationship
-    * @param string $key
-    * @return self
-    */
+    /**
+     * Build a new instance
+     *
+     * @param \Illuminate\Database\Eloquent\Relations\MorphMany $relationship
+     * @param string $key
+     * @return self
+     */
     public static function make(MorphMany $relationship, string $key): self
     {
         return new static($relationship, $key);
@@ -56,8 +56,7 @@ class AttributeCast
      */
     protected function storeCastingAs(string $type, $value): MetaAttribute
     {
-        if($meta = $this->relationship->firstWhere('key', $this->key)){
-            
+        if ($meta = $this->relationship->firstWhere('key', $this->key)) {
             $meta->fill([
                 'type' => $type,
                 'value' => $value,
@@ -69,29 +68,29 @@ class AttributeCast
         return $this->relationship->create([
             'key' => $this->key,
             'type' => $type,
-            'value' => $value
+            'value' => $value,
         ]);
     }
 
     /**
      * Create a meta attribute casting the value as array
-     * 
+     *
      * @param array $value
      * @return \Nncodes\MetaAttributes\Models\MetaAttribute
      */
     public function asArray(array $value): MetaAttribute
-    {       
+    {
         return $this->storeCastingAs('array', $value);
     }
 
     /**
      * Create a meta attribute casting the value as boolean
-     * 
+     *
      * @param mixed $value
      * @return \Nncodes\MetaAttributes\Models\MetaAttribute
      */
     public function asBoolean($value): MetaAttribute
-    {       
+    {
         return $this->storeCastingAs('boolean', $value);
     }
 
@@ -106,22 +105,23 @@ class AttributeCast
         return $this->storeCastingAs('collection', $value);
     }
 
-     /**
-     * Create a meta attribute casting the value as date
-     *
-     * @param string @format
-     * @param mixed $value
-     * @return \Nncodes\MetaAttributes\Models\MetaAttribute
-     */
+    /**
+    * Create a meta attribute casting the value as date
+    *
+    * @param string @format
+    * @param mixed $value
+    * @return \Nncodes\MetaAttributes\Models\MetaAttribute
+    */
     public function asDate($value, $format = 'Y-m-d'): MetaAttribute
     {
         $value = $value instanceof \Carbon\Carbon ? $value->format($format) : $value;
+
         return $this->storeCastingAs('date:' . $format, $value);
     }
 
     /**
      * Create a meta attribute casting the value as datetime
-     * 
+     *
      * @param string @format
      * @param mixed $value
      * @return \Nncodes\MetaAttributes\Models\MetaAttribute
@@ -129,14 +129,15 @@ class AttributeCast
     public function asDatetime($value, $format = 'Y-m-d H:i:s'): MetaAttribute
     {
         $value = $value instanceof \Carbon\Carbon ? $value->format($format) : $value;
+
         return $this->storeCastingAs('datetime:' . $format, $value);
     }
 
     /**
      * Create a meta attribute casting the value as decimal
-     * 
+     *
      * @param mixed $value
-     * @param integer $digits
+     * @param int $digits
      * @return \Nncodes\MetaAttributes\Models\MetaAttribute
      */
     public function asDecimal($value, int $digits = 2): MetaAttribute
@@ -234,31 +235,31 @@ class AttributeCast
 
     /**
      * Create a meta attribute casting the value using autodiscover
-     * 
+     *
      * @param mixed $value
      * @return \Nncodes\MetaAttributes\Models\MetaAttribute
      */
     public function value($value): MetaAttribute
     {
-        
-        if( $timestamp = strtotime($value) ){
+        if ($timestamp = strtotime($value)) {
             $value = Carbon::createFromTimestamp($timestamp);
         }
         
-        if( $value instanceof \Carbon\Carbon ){
-            if( $value->hour || $value->minute || $value->second ){
+        if ($value instanceof \Carbon\Carbon) {
+            if ($value->hour || $value->minute || $value->second) {
                 return $this->asDatetime($value);
             }
+
             return $this->asDate($value);
         }
 
-        if( $value instanceof Collection ){
+        if ($value instanceof Collection) {
             return $this->asCollection($value);
         }
 
         $primitiveTypes = ['boolean', 'integer', 'double', 'string', 'object', 'array'];
 
-        if(!in_array($type = gettype($value), $primitiveTypes)){
+        if (! in_array($type = gettype($value), $primitiveTypes)) {
             $type = 'string';
         }
 
