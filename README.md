@@ -1,7 +1,6 @@
 # Laravel Meta Attributes
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/nncodes/laravel-meta-attributes.svg?style=flat-square)](https://packagist.org/packages/nncodes/laravel-meta-attributes)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/nncodes/laravel-meta-attributes/run-tests?label=tests)](https://github.com/99codes/laravel-meta-attributes/actions?query=workflow%3ATests+branch%3Amaster)
 [![Total Downloads](https://img.shields.io/packagist/dt/nncodes/laravel-meta-attributes.svg?style=flat-square)](https://packagist.org/packages/nncodes/laravel-meta-attributes)
 
 
@@ -45,44 +44,93 @@ You can set meta attributes to your model like this:
 
 ```php
 $yourModel = YourModel::find(1);
-$yourModel->setMetaAttribute($key, $value);
-```
 
+/**
+ * Store the meta value using type auto discover
+ * 
+ * @note types: boolean, integer, double, string, 
+ * object, array, collection, date, datetime.
+*/
+
+$yourModel->setMeta($key)->value($value);
+
+//For all other types you can specify using casting methods.
+
+$yourModel->setMeta('departament')->asString('IT');
+
+$yourModel->setMeta('salaryInteger')->asInteger(1489);
+
+$yourModel->setMeta('salaryFloat')->asFloat(1489.909);
+
+$yourModel->setMeta('salaryDecimal')->asDecimal(1489.9, $digitgs = 2);
+
+$yourModel->setMeta('salaryDouble')->asDouble(1489.90);
+
+$yourModel->setMeta('salaryPerSecond')->asReal(0.00001);
+
+$yourModel->setMeta('favoriteColors')->asArray([
+    'red', 'blue', 'yellow', 'white'
+]);
+
+$yourModel->setMeta('tastes')->asCollection([
+	['name' => 'Coffee', 'type' => 'Beverage', 'rate' => 9],
+  	['name' => 'Rice', 'type' => 'Food', 'rate' => 7],
+]);
+
+$yourModel->setMeta('skills')->asObject([
+    'PHP' => 'Very Good', 
+    'Laravel' => 'Very Good', 
+    'MySQL' => 'Good'
+]);
+
+$yourModel->setMeta('isAdult')->asBoolean(true);
+
+$yourModel->setMeta('nid')->asEncrypted('FL-104050'); 
+
+$yourModel->setMeta('birthdate')->asDate(
+    '1991-01-29', 
+    $format = 'Y-m-d H:i:s'
+);
+
+$yourModel->setMeta('lastLoginAt')->asDatetime(
+    '2020-01-01 10:10:10',
+    $format = 'Y-m-d H:i:s'
+);
+
+$yourModel->setMeta('createdAt')->asTimestamp($timestamp = time());
+
+```
 And your can get a meta attribute from your model:
 
 ```php
-$yourModel->getMetaAttribute($key);
+$yourModel->getMeta($key); //Eloquent object
+$yourModel->getMetaValue($key, $fallback = null); //Only the value
+```
+
+To get the collection of meta attributes from your from:
+
+```php
+$yourModel->getMetas();
+```
+
+Or you can access all meta attributes as an object:
+
+```php
+$yourModel->meta->birthdate;
+$yourModel->meta->createdAt;
 ```
 
 You can also check if the model already has a meta attribute:
 
 ```php
-$yourModel->hasMetaAttribute($key);
+$yourModel->hasMeta($key);
 ```
 
 If you need to delete the meta attribute, it is simple:
 
 ```php
-$yourModel->forgeMetaAttribute($key);
+$yourModel->forgeMeta($key);
 ```
-
-## Testing
-
-```bash
-composer test
-```
-
-## Changelog
-
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
-
-## Contributing
-
-Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
-
-## Security Vulnerabilities
-
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
 
 ## Credits
 

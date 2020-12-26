@@ -9,14 +9,6 @@ class MetaAttributesServiceProvider extends ServiceProvider
     public function boot()
     {
         if ($this->app->runningInConsole()) {
-            $this->publishes([
-                __DIR__ . '/../config/meta-attributes.php' => config_path('meta-attributes.php'),
-            ], 'config');
-
-            $this->publishes([
-                __DIR__ . '/../resources/views' => base_path('resources/views/vendor/meta-attributes'),
-            ], 'views');
-
             $migrationFileName = 'create_meta_attributes_table.php';
             if (! $this->migrationFileExists($migrationFileName)) {
                 $this->publishes([
@@ -24,13 +16,6 @@ class MetaAttributesServiceProvider extends ServiceProvider
                 ], 'migrations');
             }
         }
-
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'meta-attributes');
-    }
-
-    public function register()
-    {
-        $this->mergeConfigFrom(__DIR__ . '/../config/meta-attributes.php', 'meta-attributes');
     }
 
     public static function migrationFileExists(string $migrationFileName): bool
