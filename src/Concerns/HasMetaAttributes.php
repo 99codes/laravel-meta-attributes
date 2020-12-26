@@ -43,11 +43,11 @@ trait HasMetaAttributes
         }
     }
 
-     /**
-     * Get a collection of meta attributes
-     *
-     * @return object
-     */
+    /**
+    * Get a collection of meta attributes
+    *
+    * @return object
+    */
     public function getMetas(): object
     {
         return (object) $this->metas->pluck('value', 'key')->toArray();
