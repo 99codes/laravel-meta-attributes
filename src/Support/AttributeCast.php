@@ -241,7 +241,7 @@ class AttributeCast
      */
     public function value($value): MetaAttribute
     {
-        if ($timestamp = strtotime($value)) {
+        if (is_string($value) && $timestamp = strtotime($value)) {
             $value = Carbon::createFromTimestamp($timestamp);
         }
         
