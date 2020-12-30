@@ -100,4 +100,14 @@ trait HasMetaAttributes
     {
         $this->metas()->where('key', $key)->delete();
     }
+
+    /**
+     * Delete all meta attributes
+     *
+     * @return void
+     */
+    public function clearMetas(): void
+    {
+        $this->metas()->delete();
+    }
 }
